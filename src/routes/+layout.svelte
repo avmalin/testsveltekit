@@ -1,8 +1,11 @@
 <script>
     import "../app.css";
+	import Header from "$lib/Header.svelte";
 </script>
 <div class="app">
+	<Header/>
     <main>
+	
         <slot/>
     </main>
 </div>
@@ -17,9 +20,10 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 1rem;
+		padding: 10rem;
+		padding-top: 0;
 		width: 100%;
-		max-width: 84rem;
+		max-width: 64rem;
 		margin: 0 auto;
 		box-sizing: border-box;
     }
