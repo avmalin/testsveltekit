@@ -12,12 +12,14 @@ const cacheFilePath = path.resolve('./src/lib/cachedData.json');
 export async function load() {
     console.log("test");
     if(false){
-
-    
-    const folderId = '1PZy3CPHkyDKbXhWA1U57k7TZHo-gHDEx'
-
     
 
+        
+    const folderId = '104O3rDgf5t1fEv3GYO8hGD6S1LPabeoW'
+    let filesName:{[key:string]:{}}={} ;
+    let folderNames:drive_v3.Schema$File[]=[]
+    
+    //create client to connect to google api
     const oauth2Client = new google.auth.OAuth2({
 
         clientId: CLIENT_ID,
@@ -25,7 +27,7 @@ export async function load() {
         redirectUri: REDIRECT_URI,
     });
     console.log("test 2")
-    
+    //set the refresh token
     const authorizationUrl= oauth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
     
     const drive = google.drive({
@@ -33,30 +35,53 @@ export async function load() {
         auth:oauth2Client
 
     })
+    try {
+        // request the folders inside folderId
+        const response = await drive.files.list({
+          q: `mimeType='application/vnd.google-apps.folder' and '${folderId}' in parents`,
+          fields: 'files(id, name)',
+        });
+        folderNames =  response.data.files??[]
+         //folderNames?.forEach (async (folder)=>
+         for (const folder of folderNames){
+            console.log(folder.id);
+            const response = await drive.files.list({
+                q:` '${folder.id}' in parents`,
+                fields: 'files(id, name, webViewLink)',
+              });
+            //insert the response into list
+            console.log(response.data.files);
+            filesName[folder.id??'']=response.data.files??'';
+            console.log('\n hi');
+        }
     
-    const response = await drive.files.list({
-        q:` '${folderId}' in parents`,
-        fields: 'files(id, name, webViewLink)',
-      });
+        // Extract folders from response
+        const folders = response.data.files;
+    }
+    catch (error) {
+        console.error('Error fetching folders or files:', error);
+    
+      }
 
-    console.log(response.data.files)
-    const fileList:drive_v3.Schema$File[]|undefined = response.data.files
+    // print the data
     
-    const dataStore =  writable(null)
-    if (fileList !== undefined){
+    console.log(folderNames)
+    console.log('file name->')
+    console.log(filesName)
+    console.log('<-file name')
+    
+    // combine the folders name and the file name
+    let myData = {'filesName':filesName,'foldersName':folderNames};
         try{
-        fs.writeFile(cacheFilePath, JSON.stringify({'name':fileList}), 'utf-8');
+        // write the data into a file
+        fs.writeFile(cacheFilePath, JSON.stringify(myData), 'utf-8');
         console.log("test3")
         }
         catch(error)
             {
-                console.error("errrpr ", error)
+                console.error("error write into file: ", error)
             }
-    console.log(JSON.stringify(fileList))
+    console.log(JSON.stringify(myData))
     }
-    
-    console.log("test3")
-    console.log(JSON.stringify(fileList))}
-
     return  {name};
 }

@@ -7,7 +7,7 @@
     
 </script>
 <h1>ברוך הבא לאתר</h1>
-<p class="text-lg">כותרת משנה, לשנות למה שרוצים</p>
+<p class="text-lg">כותרת משנה, לשנות למה שרוצים{data}</p>
 <div class="flex flex-row justify-center mt-20 w-full flex-wrap">
     {#each rule as r}
         <Card {...r} />

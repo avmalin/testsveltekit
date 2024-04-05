@@ -20,8 +20,6 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 10rem;
-		padding-top: 0;
 		width: 100%;
 		max-width: 64rem;
 		margin: 0 auto;
