@@ -6,12 +6,12 @@ import { writable } from 'svelte/store';
 import fs from 'fs/promises';
 import path from 'path';
 import { json } from 'stream/consumers';
-import{name} from '$lib/cachedData.json'
+
 const cacheFilePath = path.resolve('./src/lib/cachedData.json');
 
 export async function load() {
     console.log("test");
-    if(false){
+    if(true){
     
 
         
@@ -83,5 +83,5 @@ export async function load() {
             }
     console.log(JSON.stringify(myData))
     }
-    return  {name};
+    return  {};
 }
