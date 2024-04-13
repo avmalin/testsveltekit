@@ -22,23 +22,13 @@ interface FilesName {
 			id: any; fileName: any; fileLink: any;
 		}[] =[]
     let folders= data.folders
-    
-    const filesName:FilesName = filesNameData
-    let dataViewed = filesName[0]
-    console.log('test4')
-    //console.log(list)
-    
+  
 
-
-    
-
-    function handleClick(teachersFiles: { 
-			id: any; fileName: any; fileLink: any;
-		}[]){
+    function handleClick(teachersFiles: { id: any; fileName: any; fileLink: any;}[])
+    {
         files = teachersFiles ?? []
         flag = 'files'
         console.log('clicked')
-
         }
 
 

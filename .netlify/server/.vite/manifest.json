@@ -1,0 +1,108 @@
+{
+  ".svelte-kit/generated/server/internal.js": {
+    "file": "internal.js",
+    "imports": [
+      "_internal.js"
+    ],
+    "isEntry": true,
+    "src": ".svelte-kit/generated/server/internal.js"
+  },
+  "_cardSubject.js": {
+    "file": "chunks/cardSubject.js",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_internal.js": {
+    "file": "chunks/internal.js",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
+  "_ssr.js": {
+    "file": "chunks/ssr.js"
+  },
+  "_supabaseClient.js": {
+    "file": "chunks/supabaseClient.js"
+  },
+  "node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
+    "file": "entries/fallbacks/error.svelte.js",
+    "imports": [
+      "_ssr.js"
+    ],
+    "isEntry": true,
+    "src": "node_modules/@sveltejs/kit/src/runtime/components/error.svelte"
+  },
+  "node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+    "file": "index.js",
+    "imports": [
+      "_internal.js",
+      "_ssr.js"
+    ],
+    "isEntry": true,
+    "src": "node_modules/@sveltejs/kit/src/runtime/server/index.js"
+  },
+  "src/routes/+layout.css": {
+    "file": "_app/immutable/assets/_layout.84d67a31.css",
+    "src": "src/routes/+layout.css"
+  },
+  "src/routes/+layout.svelte": {
+    "css": [
+      "_app/immutable/assets/_layout.84d67a31.css"
+    ],
+    "file": "entries/pages/_layout.svelte.js",
+    "imports": [
+      "_ssr.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/+layout.svelte"
+  },
+  "src/routes/+page.svelte": {
+    "file": "entries/pages/_page.svelte.js",
+    "imports": [
+      "_ssr.js",
+      "_cardSubject.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/+page.svelte"
+  },
+  "src/routes/api/+server.js": {
+    "file": "entries/endpoints/api/_server.js",
+    "isEntry": true,
+    "src": "src/routes/api/+server.js"
+  },
+  "src/routes/student/+page.server.ts": {
+    "file": "entries/pages/student/_page.server.ts.js",
+    "imports": [
+      "_supabaseClient.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/student/+page.server.ts"
+  },
+  "src/routes/student/+page.svelte": {
+    "file": "entries/pages/student/_page.svelte.js",
+    "imports": [
+      "_ssr.js",
+      "_cardSubject.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/student/+page.svelte"
+  },
+  "src/routes/teacher/+page.server.js": {
+    "file": "entries/pages/teacher/_page.server.js",
+    "imports": [
+      "_supabaseClient.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/teacher/+page.server.js"
+  },
+  "src/routes/teacher/+page.svelte": {
+    "file": "entries/pages/teacher/_page.svelte.js",
+    "imports": [
+      "_ssr.js",
+      "_cardSubject.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/teacher/+page.svelte"
+  }
+}
