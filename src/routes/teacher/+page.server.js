@@ -15,5 +15,5 @@ export async function load() {
             console.log(data)
         
         
-    return {folders:data ?? [],};
+    return {folders:data ?? []};
 };

@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { DB_PROJ_URL,DB_SERVICE_KEY } from '$env/static/private'
+
 import dotenv from 'dotenv';
 dotenv.config();
 
