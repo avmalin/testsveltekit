@@ -1,6 +1,23 @@
 import fs from 'fs/promises'
 import path from 'path';
-import { json } from 'stream/consumers';
+
+
+/** @type {import('./$types').PageServerLoad} */
+import {supabase} from '$lib/supabaseClient.js'
+export async function load() {
+    const {data,error}  =await supabase
+    .from("studentsClass")
+    .select(`*`);
+    if (error)
+    {
+        console.error('supabase error on teachersfolders: ',error.message)
+    }
+       
+    console.log(data)
+        
+        
+    return {classes:data??[] };
+};
 
 export const actions={
     addClass: async(event)=>{
@@ -9,7 +26,7 @@ export const actions={
         let header = data.get("header")
         let subHeader = data.get("subHeader")
         let message = data.get("message")
-        let formData =[]
+        let formData:[key:{}]
         
         let classData ={}
         classData = {"header":header,"subHeader":subHeader,"message":message}
