@@ -13,9 +13,7 @@ interface FilesName {
     
     import CardSubject from "$lib/cardSubject.svelte";
     import CardFile from "$lib/cardFile.svelte"
-    import { foldersName } from "$lib/cachedData.json";
-    import {filesName as filesNameData} from '$lib/cachedData.json'
-	import CardClass from "$lib/cardClass.svelte";
+	
     let flag = 'folders' 
     export let data
     let files: { 
@@ -38,7 +36,7 @@ interface FilesName {
 <div class="flex flex-row w-full flex-wrap ">
     
 
-    <p>h2</p>
+   
     {#if (flag === 'folders')}
         {#each folders as folder }
             <CardSubject name= {folder.folderName} on:click={()=>handleClick(folder.teachersFiles)}/>
@@ -49,5 +47,5 @@ interface FilesName {
                 <CardFile name={file.fileName} link={file.fileLink}/>
         {/each}
     {/if}
-    <p>hi</p>
+
 </div>

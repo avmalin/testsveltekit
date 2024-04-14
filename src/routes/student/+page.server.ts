@@ -2,8 +2,9 @@ import fs from 'fs/promises'
 import path from 'path';
 
 
+
 /** @type {import('./$types').PageServerLoad} */
-import {supabase} from '$lib/supabaseClient.ts'
+import {supabase} from '$lib/supabaseClient'
 export async function load() {
     const {data,error}  =await supabase
     .from("studentsClass")

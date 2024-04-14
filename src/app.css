@@ -15,3 +15,12 @@ body {
 		),
 		
 }
+input{
+	border-radius: 0.375rem;
+	padding: 8px;
+}
+
+textarea{
+	border-radius: 0.375rem;
+	padding: 8px;
+}

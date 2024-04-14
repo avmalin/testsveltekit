@@ -8,46 +8,9 @@ export const rule=[
     {
         name:"תלמיד",
         link:"/student"
+    },
+    {
+        name:"ניהול",
+        link:"/admin"
     }
-]
-export const subjects=[
-    {
-        name:"בראשית",
-        link:"bereshit"
-    },
-    {
-        name:"שמות"
-    },
-    {
-        name:"ויקרא"
-    },
-    {
-        name:"במדבר"
-    },
-    {
-        name:"דברים"
-    },
-]
-
-export const bereshitFile=[
-    {
-        name:"פרק א",
-        link:"https://www.google.com"
-    },
-    {
-        name:"פרק ב",
-        link:"google.com"
-    },
-    {
-        name:"פרק ג",
-        link:"google.com"
-    },
-    {
-        name:"פרק ד",
-        link:"google.com"
-    },
-    {
-        name:"פרק ה",
-        link:"google.com"
-    },
 ]
