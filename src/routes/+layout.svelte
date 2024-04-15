@@ -15,6 +15,7 @@
         display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		direction: rtl;
     }
     main {
 		flex: 1;
