@@ -2,6 +2,7 @@
     import CardClass from '$lib/cardClass.svelte';
 	import { error } from '@sveltejs/kit';
     import {writable} from 'svelte/store'
+    import {page} from '$app/stores'
 	
     export let form
     export let data
@@ -20,15 +21,17 @@
         linkText:any;
         linK:any; }={}
     
+    console.log($page.data.isAuth)
+    
 
 	
 </script>
 <div class='flex mt-24'>
     <div class = 'items-center flex justify-center '>
         <div class = 'bg-slate-200  p-10 flex flex-col items-center  justify-centerm rounded-lg w-fit'>
-            {#if (!form?.isAuth)}
+            {#if ((!data.isAuth))}
                 <!-- show LOG-IN box for admin -->
-                <form class='flex flex-col'  method="post" action="?/authPass">
+                <form class='flex flex-col {$$props.class}'  method="post" action="?/authPass">
                     <input class="rounded-md p-1" bind:value={pass} name="password" type="password" placeholder="הכנס סיסמא"/>
                     <button class='bg-white mt-3 p-1 px-3 rounded-md hover:bg-gray-300'>שלח</button>
                 </form>
