@@ -1,12 +1,16 @@
 <script>
     import "../app.css";
 	import Header from "$lib/Header.svelte";
+	import screen from '$lib/assets/screen.png'
 </script>
-<div class="app">
+<div class="app px-24 ">
 	<Header/>
-    <main >
 	
-        <slot/>
+
+    <main >
+		
+	
+        <slot />
     </main>
 </div>
 
@@ -16,6 +20,11 @@
 		flex-direction: column;
 		min-height: 100vh;
 		direction: rtl;
+		background-color: #fff0e1;
+		background-image: url(../lib//assets/screen.png);
+		background-size: cover;
+		background-position: center;
+		
     }
     main {
 		flex: 1;
