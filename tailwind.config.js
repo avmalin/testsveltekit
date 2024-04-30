@@ -2,7 +2,15 @@
 export default {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        'afarsek':'AfarsekFont'
+      },
+     
+    },
+    colors:{
+      'my_color':'#fff0e1'
+    }
   },
   plugins: [],
 }

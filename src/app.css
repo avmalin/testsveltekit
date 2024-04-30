@@ -4,14 +4,25 @@
 body {
 	min-height: 100vh;
 	margin: 0;
-    direction: rtl;
+    
 	background-attachment: fixed;
 	background-color: #f8f8fe;
 	background-size: 100vw 100vh;
-	background-image: radial-gradient(
-			50% 50% at 50% 50%,
-			rgba(255, 255, 255, 0.75) 0%,
-			rgba(255, 255, 255, 0) 100%
-		),
+	
 		
 }
+input{
+	border-radius: 0.375rem;
+	padding: 8px;
+}
+
+textarea{
+	border-radius: 0.375rem;
+	padding: 8px;
+}
+@font-face {
+	font-family: 'AfarsekFont'; /* Font family name */
+	src: url('./fonts/EFT_Afarsek_Light.ttf');
+	font-weight: normal; /* Font weight */
+	font-style: normal; /* Font style */
+  }

@@ -1,5 +1,5 @@
 /** @type {import('./$types').PageServerLoad} */
-import {supabase} from '$lib/supabaseClient.js'
+import {supabase} from '$lib/supabaseClient.ts'
 export async function load() {
     const {data,error}  =await supabase
     .from("teachersFolders")
@@ -15,5 +15,5 @@ export async function load() {
             console.log(data)
         
         
-    return {folders:data ?? [],};
+    return {folders:data ?? []};
 };
