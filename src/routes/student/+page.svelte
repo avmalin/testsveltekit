@@ -1,6 +1,7 @@
 <script lang="ts">
     import CardClass from "$lib/cardClass.svelte";
 	import CardSubject from "$lib/cardSubject.svelte";
+    import studentChild from '$lib/assets/studentChild.png'
 	
     export let data
     
@@ -24,7 +25,9 @@
         console.log('clicked')
 	}
 </script>
+<div>
 {#if (isChoosen == false)}
+    <img src={studentChild}/>
     {#each classes??[] as studentClass}
         <CardSubject name = {studentClass.className} on:click={()=>{handle_click(studentClass)}}/>
     {/each}
@@ -34,3 +37,4 @@
     
 {/if}
 
+</div>

@@ -4,9 +4,9 @@
 </script>
 <div class="app">
 	<Header/>
-    <main >
+    <main class='mx-5 xl:mx-32'>
 	
-        <slot/>
+        <slot />
     </main>
 </div>
 
@@ -16,6 +16,7 @@
 		flex-direction: column;
 		min-height: 100vh;
 		direction: rtl;
+		background-color: #fff0e1;
     }
     main {
 		flex: 1;
@@ -23,7 +24,7 @@
 		flex-direction: column;
 		width: 100%;
 		max-width: 90rem;
-		margin: 0 auto;
+		
 		box-sizing: border-box;
     }
 

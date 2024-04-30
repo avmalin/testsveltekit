@@ -24,3 +24,9 @@ textarea{
 	border-radius: 0.375rem;
 	padding: 8px;
 }
+@font-face {
+	font-family: 'AfarsekFont'; /* Font family name */
+	src: url('./fonts/EFT_Afarsek_Light.ttf');
+	font-weight: normal; /* Font weight */
+	font-style: normal; /* Font style */
+  }
