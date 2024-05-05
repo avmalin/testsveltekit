@@ -5,6 +5,7 @@
     import {rule} from "$lib/index.js"
     import ballon from '$lib/assets/ballon.png'
     import {onMount} from 'svelte'
+    import whiteCircle from '$lib/assets/whiteCircle.svg'
     export let data
     
     let r = data

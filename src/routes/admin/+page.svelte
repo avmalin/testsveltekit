@@ -42,46 +42,47 @@
                 
 
             {:else}
-            <!-- Form for edit student's class -->
-                <form method="post"  class='flex flex-col ' action='?/editClass' >
-                    <label for="class"> בחר כיתה:</label>
-                    <select name="class" class='py-3 ps-2 bg-white rounded-md' bind:value={ChoosenClass}>
-                        {#each classes as studentClass}
-                            <option on:click={()=>{addClass=false}}  value={studentClass}>{studentClass.className} </option>
-                        {/each}
-                        <!--<option on:click={()=>{addClass=true}} >הוסף כיתה</option>-->
-                    </select>
-                    {#if (addClass)}
-                    <lable for='className'>שם כיתה:</lable>
-                    <input name='className' bind:value={ChoosenClass.className} type="text"/>
-                    {/if}
-                    <lable for='header'>כותרת:</lable>
-                    <input name='header' bind:value={ChoosenClass.header} type="text"/>
+                <div>
+                    <!-- Form for edit student's class -->
+                    <form method="post"  class='flex flex-col ' action='?/editClass' >
+                        <label for="class"> בחר כיתה:</label>
+                        <select name="class" class='py-3 ps-2 bg-white rounded-md' bind:value={ChoosenClass}>
+                            {#each classes as studentClass}
+                                <option on:click={()=>{addClass=false}}  value={studentClass}>{studentClass.className} </option>
+                            {/each}
+                            <!--<option on:click={()=>{addClass=true}} >הוסף כיתה</option>-->
+                        </select>
+                        {#if (addClass)}
+                        <lable for='className'>שם כיתה:</lable>
+                        <input name='className' bind:value={ChoosenClass.className} type="text"/>
+                        {/if}
+                        <lable for='header'>כותרת:</lable>
+                        <input name='header' bind:value={ChoosenClass.header} type="text"/>
 
-                    <lable for='subHeader'>כותרת משנה:</lable>
-                    <input name='subHeader'bind:value={ChoosenClass.subHeader} type="text"/>    
+                        <lable for='subHeader'>כותרת משנה:</lable>
+                        <input name='subHeader'bind:value={ChoosenClass.subHeader} type="text"/>    
 
-                    <lable for='text'>טקסט:</lable>            
-                    <textarea class="resize" name="text" bind:value={ChoosenClass.text}></textarea>
-                    
-                    <lable for='linkText'>כיתוב לקישור:</lable>
-                    <input name='linkText'bind:value={ChoosenClass.linkText} type="text"/>    
-                    
-                    <lable for='link'>קישור</lable>
-                    <textarea class='resize-none' name='link' bind:value={ChoosenClass.linK} />    
+                        <lable for='text'>טקסט:</lable>            
+                        <textarea class="resize" name="text" bind:value={ChoosenClass.text}></textarea>
+                        
+                        <lable for='linkText'>כיתוב לקישור:</lable>
+                        <input name='linkText'bind:value={ChoosenClass.linkText} type="text"/>    
+                        
+                        <lable for='link'>קישור</lable>
+                        <textarea class='resize-none' name='link' bind:value={ChoosenClass.linK} />    
 
-                    
-                    <input name="id" class='hidden' bind:value={ChoosenClass.id}/> 
-                    {#if (addClass)}
-                        <button formaction='?/addClass' class='mt-3 py-2.5 rounded-md bg-slate-400 hover:bg-slate-500 w-full m-auto'>הוסף</button>
-                    {:else}
-                        <button class='mt-3 py-2.5 rounded-md bg-slate-400 hover:bg-slate-500 w-full m-auto'>שלח</button>
-                    {/if}
-                    {#if (form?.error)}
-                        <p style='direction:ltr;' class='mt-3 ms-1 text-red-600'>{form?.error}</p>
-                    {/if}
-                </form>
-
+                        
+                        <input name="id" class='hidden' bind:value={ChoosenClass.id}/> 
+                        {#if (addClass)}
+                            <button formaction='?/addClass' class='mt-3 py-2.5 rounded-md bg-slate-400 hover:bg-slate-500 w-full m-auto'>הוסף</button>
+                        {:else}
+                            <button class='mt-3 py-2.5 rounded-md bg-slate-400 hover:bg-slate-500 w-full m-auto'>שלח</button>
+                        {/if}
+                        {#if (form?.error)}
+                            <p style='direction:ltr;' class='mt-3 ms-1 text-red-600'>{form?.error}</p>
+                        {/if}
+                    </form>
+                </div>
             
             {/if}
         </div>
