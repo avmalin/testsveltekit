@@ -23,7 +23,7 @@ interface FilesName {
     let files: { 
 			id: any; fileName: any; fileLink: any;
 		}[] =[]
-    let folders= data.folders
+    let books= data.folders
   
 
     function handleClick(teachersFiles: { id: any; fileName: any; fileLink: any;}[])
@@ -47,8 +47,8 @@ interface FilesName {
             <img class='w-11/12'src={pencilImg} alt='pencil img'/>
         </div>
         <div class='flex -mt-72'>
-            {#each folders as folder }
-                <CardSubject name= {folder.folderName} on:click={()=>handleClick(folder.teachersFiles)}/>
+            {#each books as book }
+                <CardSubject name= {book.folderName} on:click={()=>handleClick(book.teachersFiles)}/>
             {/each}
         </div>
     {:else}

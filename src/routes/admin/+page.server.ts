@@ -1,6 +1,9 @@
 
 import { ADMIN_PASS } from '$env/static/private';
 import {supabase} from '$lib/supabaseClient'
+import { json } from '@sveltejs/kit';
+
+
 
 export async function load(event) {
     let isAuth
@@ -21,14 +24,26 @@ export async function load(event) {
         console.log('cookies requgnaized')
         isAuth=true
     }
+    let ans  =await supabase
+    .from("teachersFolders")
+    .select(`
+    id,
+    folderName,
+    teachersFiles (id,fileName,fileLink)`);
+    if (ans.error)
+    {
+        console.error('supabase error on teachersfolders: ',ans.error.message)
+    }
     
        
     console.log(data)                
-    return {classes:data??[],isAuth:isAuth };
+    return {classes:data??[],books:ans.data??[],isAuth:isAuth };
 };
 
 export const actions={
     editClass: async(event)=>{
+        if (event.cookies.get('session') != ADMIN_PASS)
+            return{error:'you are not admin!'}
         
         const data = await event.request.formData();
         let header = data.get("header")
@@ -59,7 +74,10 @@ export const actions={
     },
     addClass:async({request,cookies})=>{
         const myCookie = cookies.get('session')
-        if (myCookie == ADMIN_PASS){
+        if (myCookie != ADMIN_PASS){
+            return{error:'you are not admin!'}
+        }
+        else{
 
         const data = await request.formData();    
         let header = data.get("header")
@@ -83,7 +101,7 @@ export const actions={
             return{error:res.error.details}
         }
     }
-        return{message:"add class seccesful"}
+        return{message:"add class seccesful", status:200}
     },
     authPass: async({request,cookies})=>{
         const data = await request.formData();
@@ -99,5 +117,6 @@ export const actions={
             return {isAuth:true}
             }   
         else{ return {isAuth:false, worngPass:true}}
-    }
+    },    
+
 };
