@@ -51,7 +51,7 @@
     let addChapter:{
         fileName:any;
         fileLink:any}={}
-        
+    let bookName:string
     console.log($page.data.isAuth)
 
 
@@ -67,6 +67,7 @@
 
 	async function handle_update() {
         let body={
+            action:'update',
             addToBook,
             editBook,
             deleteFromBook
@@ -79,8 +80,8 @@
                 },
                 body:JSON.stringify(body)
             });
-            const result= await response.json();
-            console.log(result);
+            
+            location.reload();
         }
         catch(error){
             console.error('ERror:',error)
@@ -106,6 +107,25 @@
             isEdit:''})
         choosenBook = choosenBook
         console.log('add to book',addToBook)
+	}
+
+
+	async function handle_new_book() {
+        try{
+            const response = await fetch('/admin',{
+                method:'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify({action:'addBook',bookName})
+            });
+            
+            location.reload();
+        }
+        catch(error){
+            console.error('ERror:',error)
+        }
+	
 	}
 </script>
 <div class='flex mt-24'>
@@ -170,15 +190,15 @@
                     <!-- Form for edit teacher's books -->                
                     <label for="class"> בחר ספר:</label>
                     <select name="class" class='py-3 ps-2 bg-white rounded-md' bind:value={choosenBook}>
-                        {#each books as book}
+                        {#each books as book (book.id)}
                             <option on:click={()=>{addClass=false}}  value={{id:book.id,body:book.teachersFiles??[]}}>{book.folderName} </option>
                         {/each}
                         <option on:click={()=>{addBook=true}} value='' >הוסף ספר</option>
                     </select>
                     {#if (addBook)}
                         <lable for='className'>שם ספר:</lable>
-                        <input name='className' bind:value={ChoosenClass.className} type="text"/>
-                        <button>הוסף</button>
+                        <input name='className' bind:value={bookName} type="text"/>
+                        <button on:click={()=>handle_new_book()}>הוסף</button>
                     {/if}
                     <table class='mt-5'>
                         <thead>
@@ -221,7 +241,7 @@
                         </tbody>
                        
                     </table>
-                    {#if (choosenBook.body.length>0)}
+                    {#if (choosenBook.body.length>=0)}
                         <div class=' -mt-2 flex justify-center'>
                             <button on:click={()=>{isAdd=true}} class='w-6'><img src={addSvg} alt='add icon'/></button>
                         </div>

@@ -2,15 +2,15 @@
 
 export const rule=[
     {
-        name: "מורה",
+        name: "חומרי הוראה",
         link:"/teacher"
     },
     {
         name:"תלמיד",
         link:"/student"
     },
-    {
-        name:"ניהול",
-        link:"/admin"
-    }
+    // {
+    //     name:"ניהול",
+    //     link:"/admin"
+    // }
 ]
