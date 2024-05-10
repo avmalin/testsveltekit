@@ -13,13 +13,17 @@ interface FilesName {
     
     import CardSubject from "$lib/cardSubject.svelte";
     import CardFile from "$lib/cardFile.svelte"
+    import pencilImg from '$lib/assets/pencilImg.webp'
+    import teachetText from '$lib/assets/techerText.png'
+    import perekText from '$lib/assets/perekText.png'
+	import pencilImg2 from '$lib/assets/pencilImg2.webp'
 	
     let flag = 'folders' 
     export let data
     let files: { 
 			id: any; fileName: any; fileLink: any;
 		}[] =[]
-    let folders= data.folders
+    let books= data.folders
   
 
     function handleClick(teachersFiles: { id: any; fileName: any; fileLink: any;}[])
@@ -31,21 +35,35 @@ interface FilesName {
 
 
 </script>
-<h1>מורה ברוך הבא לאתר</h1>
-<p class="text-lg">כותרת משנה, לשנות למה שרוצים</p>
-<div class="flex flex-row w-full flex-wrap ">
+
+<div class='flex flex-col'>
     
 
    
     {#if (flag === 'folders')}
-        {#each folders as folder }
-            <CardSubject name= {folder.folderName} on:click={()=>handleClick(folder.teachersFiles)}/>
-        {/each}
+        <div class='flex flex-row'>
+        
+            <img class='w-auto h-56' src={teachetText} alt ='teacher staff'/>
+            <img class='w-11/12'src={pencilImg} alt='pencil img'/>
+        </div>
+        <div class='flex -mt-72'>
+            {#each books as book }
+                <CardSubject name= {book.folderName} on:click={()=>handleClick(book.teachersFiles)}/>
+            {/each}
+        </div>
     {:else}
-        <button on:click={()=>{flag="folders"}}>חזור</button>
-        {#each files as file}
-                <CardFile name={file.fileName} link={file.fileLink}/>
-        {/each}
+        <div>
+            <div class='flex flex-row'>
+                <img class='w-auto h-56' src={perekText} alt ='perek staff'/>
+                <img class='ms-20 w-1/12'src={pencilImg2} alt='pencil img'/>
+                <button on:click={()=>{flag="folders"}}>חזור</button>
+            </div>
+            <div class='mt-10'>
+            {#each files as file}
+                    <CardFile name={file.fileName} link={file.fileLink}/>
+            {/each}
+            </div>
+        </div>
     {/if}
 
 </div>

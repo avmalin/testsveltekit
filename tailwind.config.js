@@ -5,12 +5,12 @@ export default {
     extend: {
       fontFamily:{
         'afarsek':'AfarsekFont'
-      },
-     
-    },
-    colors:{
+      }, colors:{
       'my_color':'#fff0e1'
     }
+     
+    },
+   
   },
   plugins: [],
 }
