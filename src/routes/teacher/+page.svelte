@@ -41,14 +41,15 @@ interface FilesName {
 
    
     {#if (flag === 'folders')}
-        <div class='flex flex-row'>
+        <div class='flex flex-row '>
         
-            <img class='w-auto h-56' src={teachetText} alt ='teacher staff'/>
-            <img class='w-11/12'src={pencilImg} alt='pencil img'/>
+            <img class=' h-32' src={teachetText} alt ='teacher staff'/>
+            <img class='fixed lg:absolute lg:top-20 lg:left-5 lg:w-2/6 lg:z-0 left-0 z-10 sm:left-2 w-32 bottom-8 'src={pencilImg} alt='pencil img'/>
         </div>
-        <div class='flex -mt-72'>
+        <div class='flex  flex-wrap justify-center items-center lg:mt-20'>
+            
             {#each books as book }
-                <CardSubject name= {book.folderName} on:click={()=>handleClick(book.teachersFiles)}/>
+                <CardFile name= {book.folderName} on:click={()=>handleClick(book.teachersFiles)}/>
             {/each}
         </div>
     {:else}

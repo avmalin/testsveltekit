@@ -40,10 +40,10 @@
 
 <div class='w-full'>
 	{#if isChoosen == false}
-		<img  class='-mt-16' src={studentChild} alt="studentChild" />
+		<img  class='fixed sm:static lg:h-72 2xl:h-auto sm:-mt-16' src={studentChild} alt="studentChild" />
 
-		<div class="m-10 flex content-between justify-between ">
-			<button
+		<div class="mt-40 sm:-mt-10  sm:space-x-12 sm :spa ce-y-0 sm:flex-row flex-wrap justify-center flex flex-col items-center space-y-10   ">
+			<button class='sm:me-12 sm:mt-10'
 				on:click={() => {
 					hundelclik(1);
 				}}

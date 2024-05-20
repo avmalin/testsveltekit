@@ -3,7 +3,7 @@
 	import Header from "$lib/Header.svelte";
 	import screen from '$lib/assets/screen.png'
 </script>
-<div class="app px-24 ">
+<div class="app px-2 md:px-24 ">
 	<Header/>
 	
 
