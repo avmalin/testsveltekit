@@ -14,7 +14,7 @@
 </script>
 
 <div class='flex flex-col-reverse sm:flex-col justify-center items-center '>
-<div class="flex flex-col sm:flex-row ml-72 ">
+<div class="flex flex-col sm:flex-row md:ml-72 ">
     {#each rule as r}
         <Card {...r} />
     {/each}
