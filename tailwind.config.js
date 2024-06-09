@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily:{
-        'afarsek':'AfarsekFont'
+        'afarsek':'AfarsekFont',
+        'chasamba':'ChasambaFont'
       }, colors:{
       'my_color':'#fff0e1'
     }

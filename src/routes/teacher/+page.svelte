@@ -47,7 +47,7 @@ interface FilesName {
             <img class='fixed lg:absolute lg:top-20 lg:left-5 lg:w-2/6 lg:z-0 left-0 z-10 sm:left-2 w-32 bottom-8 'src={pencilImg} alt='pencil img'/>
         </div>
         <div class='flex  flex-wrap justify-center items-center lg:mt-20'>
-            
+            <!-- choose book -->
             {#each books as book }
                 <CardFile name= {book.folderName} on:click={()=>handleClick(book.teachersFiles)}/>
             {/each}
@@ -55,11 +55,13 @@ interface FilesName {
     {:else}
         <div>
             <div class='flex flex-row'>
-                <img class='w-auto h-56' src={perekText} alt ='perek staff'/>
-                <img class='ms-20 w-1/12'src={pencilImg2} alt='pencil img'/>
+                <!-- <img class='w-auto h-56' src={perekText} alt ='perek staff'/> -->
+                <h1 class='font-chasamba text-4xl md:text-7xl lg:text-8xl xl:text-9xl'>בחר יחידת לימוד</h1>
+                <img class='ms-10 w-1/12'src={pencilImg2} alt='pencil img'/>
                 <button on:click={()=>{flag="folders"}}>חזור</button>
             </div>
             <div class='mt-10'>
+                <!-- choose chapter -->
             {#each files as file}
                     <CardFile name={file.fileName} link={file.fileLink}/>
             {/each}
