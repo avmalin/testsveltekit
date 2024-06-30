@@ -20,9 +20,9 @@
     {/each}
 </div>
 <div class='w-3/12 ml-44 min-w-44    sm:w-3/12 flex lg:mr-20  '>
-    <img class=' h-1/6 xl:-me-10 mt-3 ' src={ballon} alt='ballon'/>
-    <img class='' src={childImg} alt='childimg'/>
+    <img class=' h-1/6 xl:-me-10 mt-3 ' src={ballon} alt='חומרי הוראה'/>
+    <img class='' src={childImg} alt='האתר של הרב יניב'/>
     
 </div>
 </div>
-<p class='hidden'>תנ"ך, תנך, חומרים לתנך, חומרים לתנ"ך,הרב יניב ששון, בראשית</p>
+<h1 class='hidden'>תנ"ך, תנך, חומרים לתנך, חומרים לתנ"ך,הרב יניב ששון, בראשית</h1>
