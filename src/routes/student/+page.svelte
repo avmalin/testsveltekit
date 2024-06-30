@@ -48,42 +48,42 @@
 					hundelclik(1);
 				}}
 			>
-				<img src={kita1} alt="kita1" />
+				<img src={kita1} alt="כיתה א" />
 			</button>
 			<button
 				on:click={() => {
 					hundelclik(2);
 				}}
 			>
-				<img src={kita2} alt="kita2" />
+				<img src={kita2} alt="כיתה ב" />
 			</button>
 			<button
 				on:click={() => {
 					hundelclik(3);
 				}}
 			>
-				<img src={kita3} alt="kita3" />
+				<img src={kita3} alt="כיתה ג" />
 			</button>
 			<button
 				on:click={() => {
 					hundelclik(4);
 				}}
 			>
-				<img src={kita4} alt="kita4" />
+				<img src={kita4} alt="כיתה ד" />
 			</button>
 			<button
 				on:click={() => {
 					hundelclik(5);
 				}}
 			>
-				<img src={kita5} alt="kita5" />
+				<img src={kita5} alt="כיתה ה" />
 			</button>
 			<button
 				on:click={() => {
 					hundelclik(6);
 				}}
 			>
-				<img src={kita6} alt="kita6" />
+				<img src={kita6} alt="כיתה ו" />
 			</button>
 		</div>
 
