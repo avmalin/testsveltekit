@@ -26,3 +26,9 @@ textarea{
 	font-weight: normal; /* Font weight */
 	font-style: normal; /* Font style */
   }
+  @font-face {
+	font-family: 'ChasambaFont'; /* Font family name */
+	src: url('./fonts/EFT_Chasamba.ttf');
+	font-weight: normal; /* Font weight */
+	font-style: normal; /* Font style */
+  }
