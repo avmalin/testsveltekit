@@ -62,7 +62,7 @@
 					hundelclik(3);
 				}}
 			>
-				<img src={kita3} alt="כיתה ג" />
+				<img  src={kita3} alt="כיתה ג" />
 			</button>
 			<button
 				on:click={() => {
