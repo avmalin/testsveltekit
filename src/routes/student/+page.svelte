@@ -40,50 +40,50 @@
 
 <div class='w-full'>
 	{#if isChoosen == false}
-		<img  class='-mt-16' src={studentChild} alt="studentChild" />
+		<img  class='fixed sm:static lg:h-72 2xl:h-auto sm:-mt-16' src={studentChild} alt="studentChild" />
 
-		<div class="m-10 flex content-between justify-between ">
-			<button
+		<div class="mt-40 sm:-mt-10  sm:space-x-12 sm :spa ce-y-0 sm:flex-row flex-wrap justify-center flex flex-col items-center space-y-10   ">
+			<button class='sm:me-12 sm:mt-10'
 				on:click={() => {
 					hundelclik(1);
 				}}
 			>
-				<img src={kita1} alt="kita1" />
+				<img src={kita1} alt="כיתה א" />
 			</button>
 			<button
 				on:click={() => {
 					hundelclik(2);
 				}}
 			>
-				<img src={kita2} alt="kita2" />
+				<img src={kita2} alt="כיתה ב" />
 			</button>
 			<button
 				on:click={() => {
 					hundelclik(3);
 				}}
 			>
-				<img src={kita3} alt="kita3" />
+				<img  src={kita3} alt="כיתה ג" />
 			</button>
 			<button
 				on:click={() => {
 					hundelclik(4);
 				}}
 			>
-				<img src={kita4} alt="kita4" />
+				<img src={kita4} alt="כיתה ד" />
 			</button>
 			<button
 				on:click={() => {
 					hundelclik(5);
 				}}
 			>
-				<img src={kita5} alt="kita5" />
+				<img src={kita5} alt="כיתה ה" />
 			</button>
 			<button
 				on:click={() => {
 					hundelclik(6);
 				}}
 			>
-				<img src={kita6} alt="kita6" />
+				<img src={kita6} alt="כיתה ו" />
 			</button>
 		</div>
 

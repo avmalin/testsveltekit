@@ -1,10 +1,13 @@
 <script>
     export let name ="None";
     export let link ="";
+    import whiteCircle from '$lib/assets/whiteCircle.svg'
     
 </script>
 
-<a class="bg-white shadow-lg rounded-xl p-20 m-10 items-center hover:bg-gray-200 " href={link} target="_blank">
-    <h class="text-2xl">{name}</h>
+<a on:click class="relative inline-block mb-10 w-2/5 h mx-4 sm:w-56 " href={link}>
+    <img  alt='ספר תנ"ך' src={whiteCircle}/>
+    <h  class="p-4 font-afarsek text-4xl sm:text-6xl absolute inset-0 flex justify-center items-center">{name}</h>
     
+
 </a> 

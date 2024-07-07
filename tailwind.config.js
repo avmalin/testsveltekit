@@ -4,13 +4,14 @@ export default {
   theme: {
     extend: {
       fontFamily:{
-        'afarsek':'AfarsekFont'
-      },
-     
-    },
-    colors:{
+        'afarsek':'AfarsekFont',
+        'chasamba':'ChasambaFont'
+      }, colors:{
       'my_color':'#fff0e1'
     }
+     
+    },
+   
   },
   plugins: [],
 }

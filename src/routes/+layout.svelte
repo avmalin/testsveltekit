@@ -3,7 +3,12 @@
 	import Header from "$lib/Header.svelte";
 	import screen from '$lib/assets/screen.png'
 </script>
-<div class="app px-24 ">
+<svelte:head>
+    <title>האתר של הרב יניב</title>
+    <meta name="description" content='ברוכים הבאים לאתר של הרב יניב - מורה לתנ"ך במשרד החינוך. כאן תמצאו חומרים לשיעורים, מצגות ומשחקים.'>
+    <meta name="keywords" content='חומרים למורים לתנ"ך, שיעורי תנ"ך, משרד החינוך תנ"ך, הרב יניב ששון,מורה לתנך'>
+</svelte:head>
+<div class="app px-2 md:px-24 ">
 	<Header/>
 	
 
