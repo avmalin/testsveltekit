@@ -21,19 +21,23 @@ interface FilesName {
     let flag = 'folders' 
     export let data
     let files: { 
-			id: any; fileName: any; fileLink: any;
+			id: any; fileName: any; fileLink: any; priority:any;
 		}[] =[]
     let books= data.folders
   
 
-    function handleClick(teachersFiles: { id: any; fileName: any; fileLink: any;}[])
+    function handleClick(teachersFiles: { id: any; fileName: any; fileLink: any; priority:any;}[])
     {
         files = teachersFiles ?? []
         flag = 'files'
         console.log('clicked')
         }
 
-
+    $: sortedFiles = files.slice().sort((a,b)=>{
+        if (a.priority < 0 && b.priority >= 0) return 1;  // Move negatives to the end
+        if (a.priority >= 0 && b.priority < 0) return -1; // Keep positives in the front
+        return a.priority - b.priority;  // Sort remaining numbers in ascending order
+    });
 </script>
 
 <div class='flex flex-col'>
@@ -62,7 +66,7 @@ interface FilesName {
             </div>
             <div class='mt-10'>
                 <!-- choose chapter -->
-            {#each files as file}
+            {#each sortedFiles as file}
                     <CardFile name={file.fileName} link={file.fileLink}/>
             {/each}
             </div>

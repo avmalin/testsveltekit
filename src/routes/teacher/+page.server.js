@@ -6,7 +6,7 @@ export async function load() {
     .select(`
     id,
     folderName,
-    teachersFiles (id,fileName,fileLink)`);
+    teachersFiles (id,fileName,fileLink,priority)`);
     if (error)
     {
         console.error('supabase error on teachersfolders: ',error.message)
