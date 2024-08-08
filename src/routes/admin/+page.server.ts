@@ -29,7 +29,7 @@ export async function load(event) {
     .select(`
     id,
     folderName,
-    teachersFiles (id,fileName,fileLink)`);
+    teachersFiles (id,fileName,fileLink,priority)`);
     if (ans.error)
     {
         console.error('supabase error on teachersfolders: ',ans.error.message)

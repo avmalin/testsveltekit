@@ -34,23 +34,29 @@
     id: any;
     fileName: any;
     fileLink: any;
+    priority: any;
     state:any;
     isEdit:any;}[]}={id:'',body:[]}
 
     let editBook:{id: any;
     fileName: any;
-    fileLink: any;}[]=[]
+    fileLink: any;
+    priority:any;}[]=[]
 
     let deleteFromBook:{
         id:any;}[]=[]
-
+    
+    // object who present the chapter in the book
     let addToBook:{
         parentID:any;
         fileName:any;
-        fileLink:any;}[]=[]
+        fileLink:any;
+        priority:any;}[]=[]
+    // object who present the new chapter we add
     let addChapter:{
         fileName:any;
-        fileLink:any}={}
+        fileLink:any;
+        priority:any;}={}
     let bookName:string
     console.log($page.data.isAuth)
 
@@ -60,8 +66,8 @@
 	}
 
 
-	function handle_edit(chapter: { id: any; fileName: any; fileLink: any; }): any {
-        editBook.push({fileName:chapter.fileName,fileLink:chapter.fileLink,id:chapter.id})	
+	function handle_edit(chapter: { id: any; fileName: any; fileLink: any; priority:any; }): any {
+        editBook.push({fileName:chapter.fileName,fileLink:chapter.fileLink,id:chapter.id,priority:chapter.priority})	
 	}
 
 
@@ -98,11 +104,13 @@
 		addToBook.push({
             parentID:choosenBook.id,
             fileLink:addChapter.fileLink,
-            fileName:addChapter.fileName})
+            fileName:addChapter.fileName,
+            priority:addChapter.priority})
         choosenBook.body.push({
             id:'',
             fileName:addChapter.fileName,
             fileLink:addChapter.fileLink,
+            priority:addChapter.priority,
             state:'new',
             isEdit:''})
         choosenBook = choosenBook
@@ -127,6 +135,12 @@
         }
 	
 	}
+
+    $:  sortedChapter = choosenBook.body.slice().sort((a,b)=>{
+        if (a.priority < 0 && b.priority >= 0) return 1;  // Move negatives to the end
+        if (a.priority >= 0 && b.priority < 0) return -1; // Keep positives in the front
+        return a.priority - b.priority;  // Sort remaining numbers in ascending order
+    })
 </script>
 <div class='flex mt-24'>
     <div class = 'items-center flex justify-center '>
@@ -205,23 +219,29 @@
                             <tr>
                                 <th>שם</th>
                                 <th>קישור</th>
+                                <th>קדימות</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-                            {#each choosenBook.body as chapter }
+                            {#each sortedChapter as chapter }
                             <tr class={chapter.state=='deleted'?'line-through pointer-events-none':''}>
                                 <td class=' {chapter.state=='edited'?'text-gray-400':''}{chapter.state=='new'?'text-blue-400':''}'>{chapter.fileName}</td>
                                 <td class='{chapter.state=='edited'?'text-gray-400':''}{chapter.state=='new'?'text-blue-400':''}' >{chapter.fileLink}</td>
+                                <td style="direction: ltr; text-align: right;" class='{chapter.state=='edited'?'text-gray-400':''}{chapter.state=='new'?'text-blue-400':''}' >{chapter.priority}</td>
                                 <td><button on:click={()=>{chapter.isEdit=true;console.log('click')}} class='w-5 mt-1 {chapter.state=='new'?'pointer-events-none':''} ' ><img src={editSvg} alt='edit icon'/></button></td>  
                                 <td><button on:click={()=>{handle_delete(chapter);chapter.state='deleted'}} class='w-5 mt-1'><img src={deleteSvg} alt='delete icon'/></button></td>
-                                {#if (chapter.isEdit==true)}gray
-                                <div class='relative flex flex-col '>                                    
+                                {#if (chapter.isEdit==true)}
+                                <!-- edit chapter -->
+                                <div class='relative flex flex-col '>                                   
                                     <form class='absolute right-10 top-0 z-10 bg-gray-200 p-4 shadow-lg rounded-xl'>
                                         <!--<button on:click={()=>{chapter.isEdit=false}} class='w-5'><img src={exitSvg} alt='exit'/></button>-->
                                         <lable for='fileName'>שם פרק:</lable>
                                         <input name='fileName' bind:value={chapter.fileName} type="text"/>
                                         <lable for='fileLink'>קישור:</lable>
                                         <input name='fileLink' bind:value={chapter.fileLink} type="text"/>
+                                        <lable for='fileLink'>קדימות:</lable>
+                                        <input name='fileLink' bind:value={chapter.priority} type="text"/>
                                         <div class='flex justify-center'>                                        
                                             <button on:click={()=>{handle_edit(chapter); chapter.isEdit=false;chapter.state='edited'}}
                                                  class=' mt-3 border border-gray-400 rounded-lg p-0.5 px-2 bg-slate-400'>ערוך</button>
@@ -235,6 +255,7 @@
                                 <tr class='text-blue-200'>
                                     <td>{chapter.fileName}</td>
                                     <td>{chapter.fileLink}</td>
+                                    <td>{chapter.priority}</td>
                                 </tr>
                             {/each}
                             
@@ -246,6 +267,7 @@
                             <button on:click={()=>{isAdd=true}} class='w-6'><img src={addSvg} alt='add icon'/></button>
                         </div>
                         {#if (isAdd)}
+                        <!-- add new chapter -->
                             <div class='relative flex flex-col'>                                    
                                 <div class='absolute right-10 top-0 z-10 bg-gray-200 p-4 shadow-lg rounded-xl'>
                                     <button on:click={()=>{isAdd=false}} class='w-5'><img src={exitSvg} alt='exit'/></button>
@@ -253,6 +275,8 @@
                                     <input name='fileName' bind:value={addChapter.fileName} type="text"/>
                                     <lable for='fileLink'>קישור:</lable>
                                     <input name='fileLink' bind:value={addChapter.fileLink} type="text"/>
+                                    <lable for='fileLink'>קדימות:</lable>
+                                    <input name='fileLink' bind:value={addChapter.priority} type="text"/>
                                     <div class='flex justify-center'>                                                                                    
                                         <button on:click={()=>{handle_add(); isAdd=false}} class=' mt-3 border border-gray-400 rounded-lg p-0.5 px-2 bg-slate-400'>הוסף</button>
                                     </div>                                                                                
