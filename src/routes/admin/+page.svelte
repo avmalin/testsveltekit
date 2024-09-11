@@ -136,11 +136,11 @@
 	
 	}
 
-    $:  sortedChapter = choosenBook.body.slice().sort((a,b)=>{
+    $:  sortedChapter = choosenBook.body!=null? choosenBook.body.slice().sort((a,b)=>{
         if (a.priority < 0 && b.priority >= 0) return 1;  // Move negatives to the end
         if (a.priority >= 0 && b.priority < 0) return -1; // Keep positives in the front
         return a.priority - b.priority;  // Sort remaining numbers in ascending order
-    })
+    }):[]
 </script>
 <div class='flex mt-24'>
     <div class = 'items-center flex justify-center '>
