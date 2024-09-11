@@ -262,7 +262,7 @@
                         </tbody>
                        
                     </table>
-                    {#if (choosenBook.body.length>=0)}
+                    {#if (choosenBook.body && choosenBook.body.length>=0)}
                         <div class=' -mt-2 flex justify-center'>
                             <button on:click={()=>{isAdd=true}} class='w-6'><img src={addSvg} alt='add icon'/></button>
                         </div>
