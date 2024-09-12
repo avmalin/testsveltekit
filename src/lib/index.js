@@ -2,11 +2,11 @@
 
 export const rule=[
     {
-        name: "חומרי הוראה",
+        name: "חומרי הוראה למורים",
         link:"/teacher"
     },
     {
-        name:"תלמיד",
+        name:"תלמידים",
         link:"/student"
     },
     // {
