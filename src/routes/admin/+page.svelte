@@ -167,7 +167,7 @@
                             {#each classes as studentClass}
                                 <option on:click={()=>{addClass=false}}  value={studentClass}>{studentClass.className} </option>
                             {/each}
-                            <!--<option on:click={()=>{addClass=true}} >הוסף כיתה</option>-->
+                            <option on:click={()=>{addClass=true}} value=[] >הוסף כיתה</option>
                         </select>
                         {#if (addClass)}
                         <lable for='className'>שם כיתה:</lable>
