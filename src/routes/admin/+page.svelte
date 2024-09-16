@@ -141,6 +141,28 @@
         if (a.priority >= 0 && b.priority < 0) return -1; // Keep positives in the front
         return a.priority - b.priority;  // Sort remaining numbers in ascending order
     }):[]
+
+
+	function handleChangeBook   () {
+        if (!choosenBook){
+            addBook = true
+        }
+        else{
+            addBook=false
+        }
+		
+	}
+    function handleChangeclass   () {
+        if (!ChoosenClass){
+            addClass = true
+            
+        }
+        else{
+            addClass=false
+            
+        }
+		
+	}
 </script>
 <div class='flex mt-24'>
     <div class = 'items-center flex justify-center '>
@@ -163,29 +185,29 @@
                     <!-- Form for edit student's class -->
                     <form method="post"  class='flex flex-col ' action='?/editClass' >
                         <label for="class"> בחר כיתה:</label>
-                        <select name="class" class='py-3 ps-2 bg-white rounded-md' bind:value={ChoosenClass}>
+                        <select name="class" class='py-3 ps-2 bg-white rounded-md' bind:value={ChoosenClass} on:change={handleChangeclass}>
                             {#each classes as studentClass}
                                 <option on:click={()=>{addClass=false}}  value={studentClass}>{studentClass.className} </option>
                             {/each}
-                            <option on:click={()=>{addClass=true}} value=[] >הוסף כיתה</option>
+                            <option on:click={()=>{}} value='' >הוסף כיתה</option>
                         </select>
                         {#if (addClass)}
-                        <lable for='className'>שם כיתה:</lable>
+                        <label for='className'>שם כיתה:</label>
                         <input name='className' bind:value={ChoosenClass.className} type="text"/>
                         {/if}
-                        <lable for='header'>כותרת:</lable>
+                        <label for='header'>כותרת:</label>
                         <input name='header' bind:value={ChoosenClass.header} type="text"/>
 
-                        <lable for='subHeader'>כותרת משנה:</lable>
+                        <label for='subHeader'>כותרת משנה:</label>
                         <input name='subHeader'bind:value={ChoosenClass.subHeader} type="text"/>    
 
-                        <lable for='text'>טקסט:</lable>            
+                        <label for='text'>טקסט:</label>            
                         <textarea class="resize" name="text" bind:value={ChoosenClass.text}></textarea>
                         
-                        <lable for='linkText'>כיתוב לקישור:</lable>
+                        <label for='linkText'>כיתוב לקישור:</label>
                         <input name='linkText'bind:value={ChoosenClass.linkText} type="text"/>    
                         
-                        <lable for='link'>קישור</lable>
+                        <label for='link'>קישור</label>
                         <textarea class='resize-none' name='link' bind:value={ChoosenClass.linK} />    
 
                         
@@ -203,14 +225,14 @@
                 <div class='ps-10 flex flex-col '>
                     <!-- Form for edit teacher's books -->                
                     <label for="class"> בחר ספר:</label>
-                    <select name="class" class='py-3 ps-2 bg-white rounded-md' bind:value={choosenBook}>
+                    <select name="class" class='py-3 ps-2 bg-white rounded-md' bind:value={choosenBook} on:change={handleChangeBook}>
                         {#each books as book (book.id)}
-                            <option on:click={()=>{addClass=false}}  value={{id:book.id,body:book.teachersFiles??[]}}>{book.folderName} </option>
+                            <option on:click={()=>{addBook=false}}  value={{id:book.id,body:book.teachersFiles??[]}}>{book.folderName} </option>
                         {/each}
-                        <option on:click={()=>{addBook=true}} value='' >הוסף ספר</option>
+                        <option on:click={()=>{}} value='' >הוסף ספר</option>
                     </select>
                     {#if (addBook)}
-                        <lable for='className'>שם ספר:</lable>
+                        <label for='className'>שם ספר:</label>
                         <input name='className' bind:value={bookName} type="text"/>
                         <button on:click={()=>handle_new_book()}>הוסף</button>
                     {/if}
@@ -236,11 +258,11 @@
                                 <div class='relative flex flex-col '>                                   
                                     <form class='absolute right-10 top-0 z-10 bg-gray-200 p-4 shadow-lg rounded-xl'>
                                         <!--<button on:click={()=>{chapter.isEdit=false}} class='w-5'><img src={exitSvg} alt='exit'/></button>-->
-                                        <lable for='fileName'>שם פרק:</lable>
+                                        <label for='fileName'>שם פרק:</label>
                                         <input name='fileName' bind:value={chapter.fileName} type="text"/>
-                                        <lable for='fileLink'>קישור:</lable>
+                                        <label for='fileLink'>קישור:</label>
                                         <input name='fileLink' bind:value={chapter.fileLink} type="text"/>
-                                        <lable for='fileLink'>קדימות:</lable>
+                                        <label for='fileLink'>קדימות:</label>
                                         <input name='fileLink' bind:value={chapter.priority} type="text"/>
                                         <div class='flex justify-center'>                                        
                                             <button on:click={()=>{handle_edit(chapter); chapter.isEdit=false;chapter.state='edited'}}
@@ -271,11 +293,11 @@
                             <div class='relative flex flex-col'>                                    
                                 <div class='absolute right-10 top-0 z-10 bg-gray-200 p-4 shadow-lg rounded-xl'>
                                     <button on:click={()=>{isAdd=false}} class='w-5'><img src={exitSvg} alt='exit'/></button>
-                                    <lable for='fileName'>שם פרק:</lable>
+                                    <label for='fileName'>שם פרק:</label>
                                     <input name='fileName' bind:value={addChapter.fileName} type="text"/>
-                                    <lable for='fileLink'>קישור:</lable>
+                                    <label for='fileLink'>קישור:</label>
                                     <input name='fileLink' bind:value={addChapter.fileLink} type="text"/>
-                                    <lable for='fileLink'>קדימות:</lable>
+                                    <label for='fileLink'>קדימות:</label>
                                     <input name='fileLink' bind:value={addChapter.priority} type="text"/>
                                     <div class='flex justify-center'>                                                                                    
                                         <button on:click={()=>{handle_add(); isAdd=false}} class=' mt-3 border border-gray-400 rounded-lg p-0.5 px-2 bg-slate-400'>הוסף</button>
