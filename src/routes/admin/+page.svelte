@@ -5,6 +5,7 @@
     import deleteSvg from '$lib/assets/delete-svgrepo-com.svg'
 	import exitSvg from '$lib/assets/exit.svg'
     import addSvg from '$lib/assets/add-plus-circle-svgrepo-com.svg'
+	
 
     export let form
     export let data
@@ -46,6 +47,8 @@
     let deleteFromBook:{
         id:any;}[]=[]
     
+    let removeBox = false //for openning the removing class or book box
+    let removed :{id:any; name:any; type:any }
     // object who present the chapter in the book
     let addToBook:{
         parentID:any;
@@ -61,7 +64,7 @@
     console.log($page.data.isAuth)
 
 
-	function handle_delete(chapter: { id: any; fileName: any; fileLink: any; }) {
+	function handle_delete_chapter(chapter: { id: any; fileName: any; fileLink: any; }) {
         deleteFromBook.push({id:chapter.id})
 	}
 
@@ -142,6 +145,8 @@
         return a.priority - b.priority;  // Sort remaining numbers in ascending order
     }):[]
 
+    let newClassesOnly = classes.filter((obj) => obj.id > 6); //remove the basic classes
+
 
 	function handleChangeBook   () {
         if (!choosenBook){
@@ -162,6 +167,29 @@
             
         }
 		
+	}
+
+
+	async function handle_remove() {
+		let body={
+            action:'remove',
+            id:removed.id,
+            type:removed.type
+        }
+        try{
+            const response = await fetch('/admin',{
+                method:'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(body)
+            });
+            
+            location.reload();
+        }
+        catch(error){
+            console.error('ERror:',error)
+        }
 	}
 </script>
 <div class='flex mt-24'>
@@ -221,8 +249,35 @@
                             <p style='direction:ltr;' class='mt-3 ms-1 text-red-600'>{form?.error}</p>
                         {/if}
                     </form>
+                    <!-- form to Delete class or book -->
+                    <div class='mt-5 ps-10 flex flex-col'>
+                        <label for='remove'> בחר ספר או כיתה שברצונך למחוק:</label>
+                        <select name="remove" id="remove" class='py-3 ps-2 bg-white rounded-md' bind:value={removed}>
+                            {#each books as book }
+                                <option value={{id:book.id,name:book.folderName,type:'book'}}>{book.folderName}</option>
+                            {/each}
+                            <hr>
+                            {#each newClassesOnly as studentClass }
+                                <option value={{id:studentClass.id,name:studentClass.className,type:'class' }}>{studentClass.className}</option>
+                            {/each}
+                        </select>
+                        <button on:click={()=>{removeBox=true}} class='mt-3 py-2.5 rounded-md bg-red-500 hover:bg-red-400 w-full m-auto'>מחק</button>
+                        
+                    </div>
                 </div>
-                <div class='ps-10 flex flex-col '>
+                {#if removeBox}
+
+                    <div class='absolute right-1/2 top-1/2 z-10 bg-white border-4 border-red-500 py-1 shadow-2xl rounded-xl translate-x-1/2'>                        
+                        <button on:click={()=>{removeBox=false}} class='w-7 '><img src={exitSvg} alt='exit'/></button>
+                        <p class='text-xl px-10'>האם אתה בטוח שברצונך למחוק את: </p>
+                        <p class = 'text-2xl text-center'>{removed.name}</p>
+                        
+                        <div class='flex justify-center'>                                                                                    
+                            <button on:click={()=>{handle_remove(); removeBox=false}} class=' mt-3 border text-xl rounded-lg p-1 px-4 bg-red-500'>מחק</button>
+                        </div>                                                                                
+                    </div>                                                    
+                {/if}
+                <div class=' ps-10 flex flex-col '>
                     <!-- Form for edit teacher's books -->                
                     <label for="class"> בחר ספר:</label>
                     <select name="class" class='py-3 ps-2 bg-white rounded-md' bind:value={choosenBook} on:change={handleChangeBook}>
@@ -252,7 +307,7 @@
                                 <td class='{chapter.state=='edited'?'text-gray-400':''}{chapter.state=='new'?'text-blue-400':''}' >{chapter.fileLink}</td>
                                 <td style="direction: ltr; text-align: right;" class='{chapter.state=='edited'?'text-gray-400':''}{chapter.state=='new'?'text-blue-400':''}' >{chapter.priority}</td>
                                 <td><button on:click={()=>{chapter.isEdit=true;console.log('click')}} class='w-5 mt-1 {chapter.state=='new'?'pointer-events-none':''} ' ><img src={editSvg} alt='edit icon'/></button></td>  
-                                <td><button on:click={()=>{handle_delete(chapter);chapter.state='deleted'}} class='w-5 mt-1'><img src={deleteSvg} alt='delete icon'/></button></td>
+                                <td><button on:click={()=>{handle_delete_chapter(chapter);chapter.state='deleted'}} class='w-5 mt-1'><img src={deleteSvg} alt='delete icon'/></button></td>
                                 {#if (chapter.isEdit==true)}
                                 <!-- edit chapter -->
                                 <div class='relative flex flex-col '>                                   

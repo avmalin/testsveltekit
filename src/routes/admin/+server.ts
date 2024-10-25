@@ -72,6 +72,21 @@ export async function POST({request,cookies}){
         
         
     }
+    else if (action == 'remove'){
+        const req = body
+        const dbName = req.type == 'book'? "teachersFolders":"studentsClass"
+        let res = await supabase.from(dbName)
+        .delete()
+        .eq('id', req.id)
+        .then(response=>{
+            console.log(response)
+            return response
+        })
+        if( res.error != null){
+            return json(res.error.details,{status:500})
+        }
+        console.log ('remove respone', res)
+    }
  
  return json('seccess',{status:201})
  }
