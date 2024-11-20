@@ -7,6 +7,15 @@
     <title>האתר של הרב יניב</title>
     <meta name="description" content='ברוכים הבאים לאתר של הרב יניב - מורה לתנ"ך במשרד החינוך. כאן תמצאו חומרים לשיעורים, מצגות ומשחקים.'>
     <meta name="keywords" content='חומרים למורים לתנ"ך, שיעורי תנ"ך, משרד החינוך תנ"ך, הרב יניב ששון,מורה לתנך'>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X7ZN53C3Q8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X7ZN53C3Q8');
+</script>
 </svelte:head>
 <div class="app px-2 md:px-24 ">
 	<Header/>
